@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 import os
@@ -983,6 +984,8 @@ class FitoDomikApp:
         self.root = root
         self.root.title("ФитоДомик")
         self.root.geometry("1000x650")  
+        self.fullscreen = True
+        self.root.attributes("-fullscreen", self.fullscreen)
         self.arduino = ArduinoHandler()
         self.data_sender = DataSender()
         self.threshold_manager = ThresholdManager()
@@ -2134,6 +2137,14 @@ class FitoDomikApp:
         if self.photo_count_var.get() == 1:
             self.photo_time2_frame.pack_forget()
         self.photo_count_var.trace_add("write", self.toggle_second_photo_time)
+        fullscreen_frame = ttk.Frame(intervals_frame)
+        fullscreen_frame.pack(fill='x', padx=10, pady=10)
+        self.fullscreen_button = ttk.Button(
+            fullscreen_frame, 
+            text="Выйти из полноэкранного режима", 
+            command=self.toggle_fullscreen
+        )
+        self.fullscreen_button.pack(pady=5, padx=5, fill='x')
     def auto_save_on_change(self, *args):
         self.toggle_second_photo_time(*args)
         self.auto_save_settings()
@@ -2731,6 +2742,13 @@ class FitoDomikApp:
             self.threshold_status_var.set(f"Расписание сохранено ({datetime.now().strftime('%H:%M:%S')})")
         except Exception as e:
             self.threshold_status_var.set(f"Ошибка сохранения расписания: {str(e)}")
+    def toggle_fullscreen(self):
+        self.fullscreen = not self.fullscreen
+        self.root.attributes("-fullscreen", self.fullscreen)
+        if self.fullscreen:
+            self.fullscreen_button.config(text="Выйти из полноэкранного режима")
+        else:
+            self.fullscreen_button.config(text="Войти в полноэкранный режим")
 if __name__ == "__main__":
     root = tk.Tk()
     app = FitoDomikApp(root)
