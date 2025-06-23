@@ -225,5 +225,4 @@ ls -la ~/.config/autostart/
 *📝 Примечание: Замените `/home/user/` на ваш путь к пользователю.* 
 
 
-   - [Сслыка на проект](https://www.raspberrypi.com/software/](https://github.com/Legenda658/Fitodomik_main)
-
+### 🚀 [Перейти к основному проекту Fitodomik](https://github.com/Legenda658/Fitodomik_main)
