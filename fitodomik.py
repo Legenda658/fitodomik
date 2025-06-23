@@ -2145,6 +2145,15 @@ class FitoDomikApp:
             command=self.toggle_fullscreen
         )
         self.fullscreen_button.pack(pady=5, padx=5, fill='x')
+        close_frame = ttk.Frame(intervals_frame)
+        close_frame.pack(fill='x', padx=10, pady=10)
+        close_button = ttk.Button(
+            close_frame,
+            text="Закрыть приложение",
+            command=self.on_close,
+            style='Green.TButton'
+        )
+        close_button.pack(pady=5, padx=5, fill='x')
     def auto_save_on_change(self, *args):
         self.toggle_second_photo_time(*args)
         self.auto_save_settings()
